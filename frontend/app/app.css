@@ -1,0 +1,251 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+:root {
+  font-family:
+    "Space Grotesk",
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  color: #0f172a;
+  background:
+    radial-gradient(circle at 10% 20%, #e0f2fe, #eff6ff 35%),
+    radial-gradient(circle at 80% 0%, #fef3c7, transparent 40%), #f8fafc;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+.app-shell {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+.hero {
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  color: #e2e8f0;
+  padding: 32px;
+  padding-bottom: 48px;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  box-shadow: 0 30px 60px rgba(15, 23, 42, 0.25);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  color: #a5b4fc;
+  margin: 0 0 8px;
+  font-size: 12px;
+}
+
+.hero h1 {
+  margin: 0 0 12px;
+  font-size: 32px;
+}
+
+.lede {
+  margin: 0 0 16px;
+  color: #cbd5f5;
+  line-height: 1.5;
+}
+
+.chips {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+.panel {
+  background: #ffffff;
+  border-radius: 20px;
+  margin-top: -28px;
+  padding: 28px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+}
+
+.composer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: end;
+}
+
+.composer label {
+  display: block;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.composer input[type="text"] {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  font-size: 16px;
+  background: #f8fafc;
+}
+
+.composer button {
+  padding: 13px 18px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.composer button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.composer button:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px rgba(79, 70, 229, 0.35);
+}
+
+.meta {
+  margin: 16px 0;
+  display: flex;
+  gap: 16px;
+  color: #475569;
+  font-weight: 600;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.list-item {
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8fafc;
+  gap: 12px;
+  transition:
+    border-color 150ms ease,
+    transform 120ms ease;
+}
+
+.list-item:hover {
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+
+.list-item.done {
+  background: #ecfeff;
+  border-color: #a5f3fc;
+}
+
+.todo-title {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-weight: 600;
+  color: #0f172a;
+  flex: 1;
+}
+
+.todo-title input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #22c55e;
+}
+
+.list-item.done .todo-title span {
+  text-decoration: line-through;
+  color: #0f172a;
+  opacity: 0.7;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.timestamp {
+  font-size: 12px;
+  color: #475569;
+}
+
+.ghost {
+  background: transparent;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+  color: #0f172a;
+  transition:
+    background 120ms ease,
+    border-color 120ms ease;
+}
+
+.ghost:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.muted {
+  color: #94a3b8;
+}
+
+.error {
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .panel {
+    padding: 20px;
+  }
+
+  .composer {
+    grid-template-columns: 1fr;
+  }
+
+  .list-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
