@@ -1,0 +1,76 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: taskspace-backend
+spec:
+  selector:
+    app: taskspace-backend
+  ports:
+    - port: 3000
+      targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taskspace-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: taskspace-backend
+  template:
+    metadata:
+      labels:
+        app: taskspace-backend
+    spec:
+      containers:
+        - name: api
+          image: ghcr.io/your-org/taskspace-backend:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: HOST
+              value: "0.0.0.0"
+            - name: PORT
+              value: "3000"
+            - name: APP_FRONTEND_ORIGIN
+              value: http://taskspace.local
+            - name: DB_HOST
+              value: taskspace-postgres
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: taskspace-db-secret
+                  key: POSTGRES_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: taskspace-db-secret
+                  key: POSTGRES_PASSWORD
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: taskspace-db-secret
+                  key: POSTGRES_DB
+            - name: DB_MIGRATIONS_RUN
+              value: "true"
+            - name: DB_SYNCHRONIZE
+              value: "false"
+            - name: DB_LOGGING
+              value: "false"
+          readinessProbe:
+            httpGet:
+              path: /docs
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /docs
+              port: 3000
+            initialDelaySeconds: 20
+            periodSeconds: 20

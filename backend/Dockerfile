@@ -10,12 +10,16 @@ COPY . .
 COPY --from=deps /app/node_modules ./node_modules
 RUN corepack enable && yarn build
 
+FROM node:20-alpine AS prod-deps
+WORKDIR /app
+COPY package.json yarn.lock ./
+RUN corepack enable && yarn install --frozen-lockfile --production=true
+
 FROM node:20-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
-ENV HOST=0.0.0.0
 COPY package.json yarn.lock ./
-COPY --from=deps /app/node_modules ./node_modules
-COPY --from=build /app/build ./build
-ENV PORT=4173
-CMD ["node", "./node_modules/.bin/react-router-serve", "./build/server/index.js"]
+COPY --from=prod-deps /app/node_modules ./node_modules
+COPY --from=build /app/dist ./dist
+EXPOSE 3000
+CMD ["node", "dist/src/main.js"]

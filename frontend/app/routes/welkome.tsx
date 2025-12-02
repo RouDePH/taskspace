@@ -7,7 +7,9 @@ type Todo = {
   createdAt: string;
 };
 
-const API_BASE = "http://localhost:3000/api/v1";
+const API_BASE =
+  (import.meta.env.VITE_API_BASE as string | undefined) ??
+  (import.meta.env.DEV ? "http://localhost:3000/api/v1" : "/api/v1");
 
 function classNames(...parts: Array<string | false | null | undefined>) {
   return parts.filter(Boolean).join(" ");
