@@ -28,7 +28,7 @@ module.exports = {
       name: 'taskspace-web',
       cwd: frontendDir,
       script: 'node',
-      args: './node_modules/.bin/react-router-serve ./build/server/index.js',
+      args: './node_modules/.bin/react-router-serve ./build/server/index.js --host 0.0.0.0 --port 4173',
       instances: 1,
       exec_mode: 'fork',
       env: {
