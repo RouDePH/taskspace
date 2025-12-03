@@ -1,8 +1,4 @@
-import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import {
   InjectTodosRepository,
   TodoEntity,
@@ -11,7 +7,7 @@ import {
 import { TodoInputDto, TodoUpdateDto } from './dto';
 
 @Injectable()
-export class AppService {
+export class TodoService {
   constructor(
     @InjectTodosRepository()
     private readonly repository: TodosRepository,
@@ -24,13 +20,8 @@ export class AppService {
   }
 
   async createTodo({ title, completed }: TodoInputDto): Promise<TodoEntity> {
-    const name = title?.trim();
-    if (!name) {
-      throw new BadRequestException('Task title cannot be empty');
-    }
-
     const todo = this.repository.create({
-      title: name,
+      title: title.trim(),
       completed: completed,
     });
 
@@ -44,11 +35,7 @@ export class AppService {
     }
 
     if (typeof updates.title === 'string') {
-      const name = updates.title.trim();
-      if (!name) {
-        throw new BadRequestException('Task title cannot be empty');
-      }
-      todo.title = name;
+      todo.title = updates.title.trim();
     }
 
     if (typeof updates.completed === 'boolean') {

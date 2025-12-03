@@ -1,19 +1,10 @@
 import { type FormEvent, useEffect, useMemo, useState } from "react";
-
-type Todo = {
-  id: string;
-  title: string;
-  completed: boolean;
-  createdAt: string;
-};
+import type { Todo } from "~/shared";
+import { classNames } from "~/utils";
 
 const API_BASE =
   (import.meta.env.VITE_API_BASE as string | undefined) ??
   (import.meta.env.DEV ? "http://localhost:3000/api/v1" : "/api/v1");
-
-function classNames(...parts: Array<string | false | null | undefined>) {
-  return parts.filter(Boolean).join(" ");
-}
 
 export function App() {
   const [todos, setTodos] = useState<Todo[]>([]);

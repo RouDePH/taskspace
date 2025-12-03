@@ -6,14 +6,14 @@ import {
 } from '@nestjs/common';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
-import { AppModule } from './app.module';
+import { TodoModule } from './todo.module';
 import { SwaggerService } from './shared';
 import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
   const logger = new Logger('GLOBAL');
 
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(TodoModule);
 
   const configService = app.get(ConfigService);
   const swaggerService = app.get(SwaggerService);

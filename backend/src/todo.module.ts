@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { TodoController } from './todo.controller';
+import { TodoService } from './todo.service';
 import { DEFAULT_DB_NAME } from './shared';
 import { SharedModule } from './shared/shared.module';
 import { TodoEntity } from './todo.entity';
@@ -11,7 +11,7 @@ import { TodoEntity } from './todo.entity';
     SharedModule,
     TypeOrmModule.forFeature([TodoEntity], DEFAULT_DB_NAME),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [TodoController],
+  providers: [TodoService],
 })
-export class AppModule {}
+export class TodoModule {}
