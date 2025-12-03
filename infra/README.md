@@ -4,7 +4,7 @@ This folder keeps the production entrypoints for the Taskspace stack (Nest backe
 - Frontend API base is driven by `VITE_API_BASE` (defaults to `/api/v1` in production; set it before `yarn build` or `docker build` if you need a different host).
 
 ## PM2 (bare metal)
-- Copy envs: `cp backend/.env.production.example backend/.env.production` and `cp frontend/.env.production.example frontend/.env.production`, then fill values.
+- Copy envs: `cp backend/.env.example backend/.env.production` and `cp frontend/.env.example frontend/.env.production`, then fill values.
 - Build once: `cd backend && yarn build`, `cd frontend && yarn build`.
 - Start: from repo root run `pm2 start infra/pm2/ecosystem.config.cjs --env production`; stop with `pm2 delete taskspace-api taskspace-web`.
 
