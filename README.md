@@ -6,7 +6,7 @@ This folder keeps the production entrypoints for the Taskspace stack (Nest backe
 
 ## PM2 (bare metal)
 
-- Copy envs: `cp backend/.env.example backend/.env.production` and `cp frontend/.env.example frontend/.env.production`, then fill values.
+- Copy envs: `cp backend/.env.pm2.example backend/.env.production` and `cp frontend/.env.pm2.example frontend/.env.production`, then fill values.
 - Build once: `cd backend && yarn build`, `cd frontend && yarn build`.
 - Start: from repo root run `pm2 start infra/pm2/ecosystem.config.cjs --env production`; stop with `pm2 delete taskspace-api taskspace-web`.
 

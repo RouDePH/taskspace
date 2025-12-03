@@ -17,6 +17,6 @@ ENV HOST=0.0.0.0
 COPY package.json yarn.lock ./
 COPY --from=deps /app/node_modules ./node_modules
 COPY --from=build /app/build ./build
-ENV PORT=4173
-EXPOSE 4173
-CMD ["node", "./node_modules/.bin/react-router-serve", "./build/server/index.js", "--host", "0.0.0.0", "--port", "4173"]
+ENV PORT=3000
+EXPOSE 3000
+CMD ["node", "./node_modules/.bin/react-router-serve", "./build/server/index.js", "--host", "0.0.0.0", "--port", "3000"]
