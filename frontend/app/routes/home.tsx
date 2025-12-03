@@ -116,14 +116,9 @@ export function App() {
       <header className="hero">
         <p className="eyebrow">Demo setup</p>
         <h1>Todo list with API and storage</h1>
-        <p className="lede">
-          React client talks to the Nest API, the service writes data to
-          Postgres via TypeORM. Good for demonstrating the client → server →
-          storage chain.
-        </p>
         <div className="chips">
-          <span className="chip">REST</span>
-          <span className="chip">CORS enabled</span>
+          <span className="chip">React</span>
+          <span className="chip">NestJS</span>
           <span className="chip">Postgres + TypeORM</span>
         </div>
       </header>
