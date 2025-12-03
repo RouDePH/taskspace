@@ -21,11 +21,3 @@ This folder keeps the production entrypoints for the Taskspace stack (Nest backe
 
 - Reverse-proxy config lives at `infra/nginx/default.conf` (used by Docker Compose, can be dropped into any nginx install).
 - Proxies `/api` to `backend:3000`, `/docs` to Swagger UI, everything else to `frontend:4173`; includes a `/healthz` endpoint.
-
-## Kubernetes
-
-- Build and push images first (example):  
-  `docker build -t ghcr.io/your-org/taskspace-backend:latest backend`  
-  `docker build -t ghcr.io/your-org/taskspace-frontend:latest frontend`
-- Apply manifests: `kubectl apply -f infra/k8s/secret.yaml -f infra/k8s/postgres.yaml -f infra/k8s/backend.yaml -f infra/k8s/frontend.yaml -f infra/k8s/ingress.yaml`.
-- The ingress expects an NGINX ingress controller and routes host `taskspace.local` (`/api` + `/docs` → API, `/` → frontend). Add a local DNS entry if testing.
